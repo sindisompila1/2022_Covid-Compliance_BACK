@@ -1,3 +1,4 @@
+
 const express =require('express');
 const router = express.Router();
 const app=express();
@@ -7,9 +8,8 @@ const database=require('./database');
 
 
 
-router.get('/officer',(req,res)=>{
-    
-     let sql = 'select * from officer';
+router.get('/record',(req,res)=>{
+     let sql = 'select * from record';
 
     database.query(sql,(err,result)=>{
          if (err){
@@ -22,6 +22,13 @@ router.get('/officer',(req,res)=>{
              data:result
              })
              
+         }
+
+         else{
+
+            res.send({
+                message:'no data'
+            })
          }
      });
 

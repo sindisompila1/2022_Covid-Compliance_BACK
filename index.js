@@ -14,11 +14,15 @@ const add=require('./routes/add_user');
 const view_user=require('./routes/view_user');
 const update=require('./routes/update');
 const login=require('./routes/login');
+const update_officer=require('./routes/update_officer');
+const login_officer=require('./routes/login_officer');
+const records=require('./routes/get_all_records');
+const officers=require('./routes/retrieve_all_officers');
+
 
 //instantiating 
 app.use(cors());
 app.use(bodyparser.json());
-
 
 //creating database connection
 
@@ -35,63 +39,23 @@ db.connect(err=>{
     
 
 });
+
+
+
+
 app.use('/viewall',viewall);
 app.use('/delete',delete_user);
 app.use('/view_user',view_user);
 app.use('/add_user',add);
 app.use('/update',update);
 app.use('/login',login);
-
-/* viewing everything from the user table
-app.get('/user',(req,res)=>{
- 
-    let sql = 'select * from user';
-    db.query(sql,(err,result)=>{
-        if (err)
-        {
-            console.log(err,'errs');
-
-        }
-        if(result.length>0)
-        {
-            res.send({
-                message:'all user data',
-                data:result
-            });
-        }
-    });
-});
-*/
-
- //delete a record from the user table
-/*app.delete('/user/:User_id',(req,res)=>{
-     let qID =req.params.User_id;
-      
-     let qr = `delete from user where User_id = '${qID}'`;
-     db.query(qr,(err,result)=>{
-
-        if(err) {console.log(err);}
-    
-           res.send(
-               {
-                   message:'data deleted '
-               }
-           )
-
-     });
-
-
-
-});
-*/
-
-
-
-
+app.use('/update_officer',update_officer);
+app.use('/login_officer',login_officer);
+app.use('/get_all_records',records);
+app.use('/retrieve_all_officers',officers);
 
 
 //server
-
 
 
 

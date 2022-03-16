@@ -18,7 +18,7 @@ router.put('/user/:User_id',(req,res)=>{
     let Email=req.body.Email;
     let Password=req.body.Password;
 
-    let qr = `update user set First_name ='${First_name}',Last_name='${Last_name}',Gender='&{Gender}',Type='${Type}',Cellphone_number='${Cellphone_number}',Email='${Email}',Password='${Password}' WHERE User_id ='${Id}'`;
+    let qr = `update user set First_name ='${First_name}',Last_name='${Last_name}',Gender='${Gender}',Type='${Type}',Cellphone_number='${Cellphone_number}',Email='${Email}',Password='${Password}' WHERE User_id ='${Id}'`;
 
     database.query(qr,(err,result)=>{
         if(err){console.log(err);}
