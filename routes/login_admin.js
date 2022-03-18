@@ -15,28 +15,27 @@ const database=require('./database');
 router.get('/admin',(req,res)=>{
 
     
-
+   
     console.log(req.body,'createdata');
 
     //instatiating user variables
 
 
-    let Admin_id =req.body.Admin_id;
-    let Password=req.body.Password;
+    let adminId =req.body.adminId;
+    let password=req.body.password;
    
 
 //sending the variables to the database
 
 
 
-let qr=`select * from user where Admin_id ='${Admin_id}' and Password='${Password}' limit 1 `;
+let qr=`select * from admin where admin_id ='${adminId}' and Password='${password}' limit 1 `;
 
 database.query(qr,(err,result)=>{
 
     if(err){console.log(err);}
-  // console.log(result,'result')
-
- if(result.length>0)  
+   console.log(result,'result')
+   if(result.length>0)
    {
     res.send({
         message:'user found',
@@ -53,7 +52,7 @@ database.query(qr,(err,result)=>{
 
 });
 
-/*const render = res.render;
+const render = res.render;
     const send = res.send;
     res.render = function renderWrapper(...args) {
         Error.captureStackTrace(this);
@@ -71,4 +70,3 @@ database.query(qr,(err,result)=>{
     
 
 });
-*/
