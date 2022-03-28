@@ -27,7 +27,9 @@ const create_officer=require('./routes/create_officer');
 const retrieve_entered_student=require('./routes/retrieve_entered_student');
 const delete_officer=  require('./routes/delete_officer');
 const login_admin=  require('./routes/login_admin');
-const add_record=require('./routes/add_record');
+const updateRecord=  require('./routes/updateRecord');
+const insertRecord=  require('./routes/insertRecord');
+
 
 
 //instantiating 
@@ -67,9 +69,8 @@ app.use('/create_officer',create_officer);
 app.use('/retrieve_entered_student',retrieve_entered_student);
 app.use('/login_admin',login_admin);
 app.use('/delete_officer',delete_officer);
-app.use('/add_record',add_record);
-
-
+app.use('/updateRecord',updateRecord);
+app.use('/insertRecord',insertRecord);
 
 
 
