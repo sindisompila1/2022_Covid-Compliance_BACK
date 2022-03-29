@@ -13,7 +13,7 @@ app.use(bodyparser.json());
 const database=require('./database');
 
 
-router.get('/user',(req,res)=>{
+router.post('/user',(req,res)=>{
 
     
    
@@ -22,15 +22,15 @@ router.get('/user',(req,res)=>{
     //instatiating user variables
 
 
-    let userId =req.body.userId;
-    let password=req.body.password;
+    let User_id =req.body.User_id;
+    let Password=req.body.Password;
    
 
 //sending the variables to the database
 
 
 
-let qr=`select * from user where User_id ='${userId}' and Password='${password}' limit 1 `;
+let qr=`select * from user where User_id ='${User_id}' and Password='${Password}' limit 1 `;
 
 database.query(qr,(err,result)=>{
 
@@ -39,15 +39,16 @@ database.query(qr,(err,result)=>{
    if(result.length>0)
    {
     res.send({
-        message:'user found',
-        data:result
+        message:'Successful',
+        data:result,
+        User_id:User_id
         
     });
    }
    else 
    {
         res.send({
-         message:'no user'
+         message:'Unsuccessful'
     })
   }
 

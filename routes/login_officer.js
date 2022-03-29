@@ -12,7 +12,7 @@ app.use(bodyparser.json());
 const database=require('./database');
 
 
-router.get('/officer',(req,res)=>{
+router.post('/officer',(req,res)=>{
 
     
     console.log(req.body,'createdata');
@@ -20,7 +20,7 @@ router.get('/officer',(req,res)=>{
     //instatiating user variables
 
 
-    let Officer_id =req.body.Officer_id;
+    let User_id =req.body.User_id;
     let Password=req.body.Password;
    
 
@@ -28,7 +28,7 @@ router.get('/officer',(req,res)=>{
 
 
 
-let qr=`select * from officer where Officer_id ='${Officer_id}' and Password='${Password}' limit 1 `;
+let qr=`select * from officer where Officer_id ='${User_id}' and Password='${Password}' limit 1 `;
 
 database.query(qr,(err,result)=>{
 
@@ -39,7 +39,8 @@ database.query(qr,(err,result)=>{
    {
     res.send({
         message:'user found',
-        data:result
+        data:result,
+        User_id:User_id
         
     });
    }
