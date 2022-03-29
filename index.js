@@ -29,7 +29,7 @@ const delete_officer=  require('./routes/delete_officer');
 const login_admin=  require('./routes/login_admin');
 const updateRecord=  require('./routes/updateRecord');
 const insertRecord=  require('./routes/insertRecord');
-
+const retrieve_officer=require('./routes/retrieve_officer');
 
 
 //instantiating 
@@ -71,6 +71,7 @@ app.use('/login_admin',login_admin);
 app.use('/delete_officer',delete_officer);
 app.use('/updateRecord',updateRecord);
 app.use('/insertRecord',insertRecord);
+app.use('/retrieve_officer',retrieve_officer);
 
 
 
