@@ -24,10 +24,10 @@ router.post('/record',(req,res)=>{
 
     let User_id=req.body.User_id;
     let Form_check=req.body.Form_check;
-   
+    let date=new Date();
 
-
-  let qr=`insert into record(User_id,Form_check) values('${User_id}','${Form_check}')`;
+console.log('todays date',date);
+  let qr=`insert into record(User_id,Form_check,Date) values('${User_id}','${Form_check}','${date.toDateString()}')`;
 
  database.query(qr,(err,result)=>{
 

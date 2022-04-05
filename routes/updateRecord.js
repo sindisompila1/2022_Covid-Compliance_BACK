@@ -10,6 +10,7 @@ router.put('/record/:Record_id',(req,res)=>{
 
     let Record_id=req.params.Record_id;
     //let Officer_id=req.body.Officer_id;
+    let date=new Date();
     let Tempareture=req.body.Tempareture;
     let Health_status_reason=req.body.Health_status_reason;
     let isAllowedEntrence=req.body.isAllowedEntrence;

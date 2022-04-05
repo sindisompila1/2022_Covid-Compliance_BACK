@@ -13,7 +13,7 @@ const database=require('./database');
 router.get('/record',(req,res)=>{
 
     
-    let qr = `select User_id,Tempareture from record where isAllowedEntrence= 1`;
+    let qr = `select * from record where isAllowedEntrence= 1`;
     
     database.query(qr,(err,result)=>{
     
