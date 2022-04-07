@@ -32,6 +32,10 @@ const insertRecord=  require('./routes/insertRecord');
 const retrieve_officer=require('./routes/retrieve_officer');
 const retrieve_all_form=require('./routes/retrieve_all_form');
 const delete_feedback=require('./routes/delete_feedback');
+const insert_feedback=require('./routes/insert_feedback');
+const select_all_feedback=require('./routes/select_all_feedback');
+const view_single_feedback=require('./routes/view_single_feedback');
+
 
 
 //instantiating 
@@ -76,6 +80,9 @@ app.use('/insertRecord',insertRecord);
 app.use('/retrieve_officer',retrieve_officer);
 app.use('/retrieve_all_form',retrieve_all_form);
 app.use('/delete_feedback',delete_feedback);
+app.use('/insert_feedback',insert_feedback);
+app.use('/select_all_feedback',select_all_feedback);
+app.use('/view_single_feedback',view_single_feedback);
 
 
 //server
