@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2022 at 08:49 AM
+-- Generation Time: Apr 06, 2022 at 09:48 AM
 -- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.27
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bus`
+-- Database: `covid_compliance`
 --
 
 -- --------------------------------------------------------
@@ -78,6 +78,29 @@ CREATE TABLE `feedback` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `image`
+--
+
+CREATE TABLE `image` (
+  `image_id` int(25) NOT NULL,
+  `pictureName` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notification`
+--
+
+CREATE TABLE `notification` (
+  `notification_id` int(25) NOT NULL,
+  `admin_id` int(25) NOT NULL,
+  `message` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `officer`
 --
 
@@ -106,8 +129,8 @@ INSERT INTO `officer` (`Officer_id`, `Campus_id`, `First_name`, `Last_name`, `Ge
 --
 
 CREATE TABLE `record` (
-  `Record_id` varchar(25) NOT NULL,
-  `Office_id` varchar(25) NOT NULL,
+  `Record_id` int(25) NOT NULL,
+  `Officer_id` int(11) NOT NULL,
   `User_id` varchar(25) NOT NULL,
   `Form_check` varchar(25) NOT NULL,
   `Date` varchar(10) NOT NULL,
@@ -115,6 +138,17 @@ CREATE TABLE `record` (
   `isAllowedEntrence` tinyint(1) NOT NULL,
   `Health_status_reason` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `record`
+--
+
+INSERT INTO `record` (`Record_id`, `Officer_id`, `User_id`, `Form_check`, `Date`, `Tempareture`, `isAllowedEntrence`, `Health_status_reason`) VALUES
+(1, 0, '2164', '1', '', 0, 0, ''),
+(4, 0, '2164', '0', '', 0, 0, ''),
+(5, 0, '2164', '0', '', 0, 0, ''),
+(6, 0, '222', '0', '', 0, 0, ''),
+(7, 0, '13', '1', '', 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -141,22 +175,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`no`, `User_id`, `Camp_id`, `First_name`, `Last_name`, `Gender`, `Type`, `Cellphone_number`, `Email`, `Password`, `profile_pic`) VALUES
-(1, '0000', '1', 'undefined', 'undefined', '&', 'u', 'undefined', 'undefined', 'undefined', ''),
-(2, '0001', '1', 'four', 'smith', '1', '2', '0767668445', 'fs@gmail.com', '12345', ''),
-(3, '0006', '1', 'four', 'smith', '1', '2', '0767668445', 'fs@gmail.com', '12345', ''),
-(4, '00066', '1', 'four', 'smith', '1', '2', '0767668445', 'fs@gmail.com', '12345', ''),
-(5, '0007', '1', 'four', 'smith', '1', '2', '0767668445', 'fs@gmail.com', '12345', ''),
-(6, '0011', '1', 'five', 'smith', '1', '2', '0767668445', 'fs@gmail.com', '12345', ''),
-(7, '002', '1', 'five', 'smith', '1', '2', '0767668445', 'fs@gmail.com', '12345', ''),
-(8, '0111', '1', 'five', 'smith', '1', '2', '0767668445', 'fs@gmail.com', '12345', ''),
-(9, '1111', '1', 'five', 'smith', '1', '2', '0767668445', 'fs@gmail.com', '12345', ''),
-(10, '11111', '1', 'relay', 'javas', '1', '2', '0787665445', 'rj@gmail.com', '12345', ''),
-(12, '218179088', '1', 'thabo', 'chauke', 'm', '1', '0123662559', 'tb@gmail.com', 'Lerato@1', ''),
-(13, '2424', '1', 'filessss', 'javascript', '1', '2', '0787665445', 'js@gmail.com', '12345', ''),
-(14, '3111', '1', 'five', 'smith', '1', '2', '0767668445', 'fs@gmail.com', '12345', ''),
-(15, '3452672', '1', 'sesi', 'Phakane', 'f', 'f', '036251586', 'eliz@gmail.com', '12345', ''),
-(16, '4111', '1', 'five', 'smith', '1', '2', '0767668445', 'fs@gmail.com', '12345', ''),
-(17, '5111', '1', 'five', 'smith', '1', '2', '0767668445', 'fs@gmail.com', '12345', '');
+(1, '0000', '1', 'undefined', 'undefined', '&', 'u', 'undefined', 'undefined', 'undefined', '');
 
 --
 -- Indexes for dumped tables
@@ -184,6 +203,18 @@ ALTER TABLE `feedback`
   ADD KEY `FK_feedback_camp_reiceves` (`Camp_id`);
 
 --
+-- Indexes for table `image`
+--
+ALTER TABLE `image`
+  ADD PRIMARY KEY (`image_id`);
+
+--
+-- Indexes for table `notification`
+--
+ALTER TABLE `notification`
+  ADD PRIMARY KEY (`notification_id`);
+
+--
 -- Indexes for table `officer`
 --
 ALTER TABLE `officer`
@@ -195,8 +226,7 @@ ALTER TABLE `officer`
 --
 ALTER TABLE `record`
   ADD PRIMARY KEY (`Record_id`),
-  ADD KEY `FK_record_user_has` (`User_id`),
-  ADD KEY `FK_record_officer_input` (`Office_id`);
+  ADD KEY `FK_record_user_has` (`User_id`);
 
 --
 -- Indexes for table `user`
@@ -209,6 +239,24 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `image`
+--
+ALTER TABLE `image`
+  MODIFY `image_id` int(25) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `notification`
+--
+ALTER TABLE `notification`
+  MODIFY `notification_id` int(25) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `record`
+--
+ALTER TABLE `record`
+  MODIFY `Record_id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user`
