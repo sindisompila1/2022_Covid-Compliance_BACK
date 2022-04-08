@@ -22,7 +22,7 @@ router.post('/feedback',(req,res)=>{
 
 
     //let Feed_id =req.body.Feed_id;
-    let User_id=req.body.User_id;
+    let username=req.body.username;
     //let Camp_id=req.body.Camp_id;
     let Comment=req.body.Comment;
     let date  =new Date();
@@ -31,7 +31,7 @@ router.post('/feedback',(req,res)=>{
 
 
 
-let qr=`insert into feedback(User_id,Comment,Date) values('${User_id}','${Comment}','${date.toDateString()}')`;
+let qr=`insert into feedback(username,Comment,Date) values('${username}','${Comment}','${date.toDateString()}')`;
 
 database.query(qr,(err,result)=>{
 
@@ -42,7 +42,7 @@ database.query(qr,(err,result)=>{
 
         res.send({
             message:'data inserted',
-            User_id:User_id
+            username:username
         });
     }
   

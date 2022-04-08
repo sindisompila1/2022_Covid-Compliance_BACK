@@ -35,8 +35,10 @@ const delete_feedback=require('./routes/delete_feedback');
 const insert_feedback=require('./routes/insert_feedback');
 const select_all_feedback=require('./routes/select_all_feedback');
 const view_single_feedback=require('./routes/view_single_feedback');
-
-
+const upload_image=require('./routes/upload_image');
+const delete_image=require('./routes/delete_image');
+const select_all_image=require('./routes/select_all_image');
+const select_image=require('./routes/select_image');
 
 //instantiating 
 app.use(cors());
@@ -83,7 +85,9 @@ app.use('/delete_feedback',delete_feedback);
 app.use('/insert_feedback',insert_feedback);
 app.use('/select_all_feedback',select_all_feedback);
 app.use('/view_single_feedback',view_single_feedback);
-
-
+app.use('/upload_image',upload_image);
+app.use('/delete_image',delete_image);
+app.use('/select_all_image',select_all_image);
+app.use('/select_image',select_image);
 //server
 app.listen(3000,()=>{console.log('server running')})
