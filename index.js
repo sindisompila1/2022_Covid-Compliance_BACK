@@ -39,6 +39,7 @@ const upload_image=require('./routes/upload_image');
 const delete_image=require('./routes/delete_image');
 const select_all_image=require('./routes/select_all_image');
 const select_image=require('./routes/select_image');
+const insert_video=require('./routes/insert_video');
 
 //instantiating 
 app.use(cors());
@@ -89,5 +90,6 @@ app.use('/upload_image',upload_image);
 app.use('/delete_image',delete_image);
 app.use('/select_all_image',select_all_image);
 app.use('/select_image',select_image);
+app.use('/insert_video',insert_video);
 //server
 app.listen(3000,()=>{console.log('server running')})
