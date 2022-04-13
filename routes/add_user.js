@@ -40,32 +40,44 @@ let qr=`insert into user(User_id,Camp_id,First_name,Last_name,Gender,Type,Cellph
 
 database.query(qr,(err,result)=>{
 
-    if(err){console.log(err);}
-   console.log(result,'result')
-
-        res.send({
-            message:'data inserted'
-        });
-
+  
+    if(err){console.log(err);
+        console.log(result,'result')
         res.send({message:'data not inserted'});
-
-});
-
-const render = res.render;
-    const send = res.send;
-    res.render = function renderWrapper(...args) {
-        Error.captureStackTrace(this);
-        return render.apply(this, args);
-
-    };
-
-    res.send = function sendWrapper(...args) {
-        try {
-            send.apply(this, args);
-        } catch (err) {
-            console.error(`Error in res.send | ${err.code} | ${err.message} | ${res.stack}`);
-        }
-    };
-    //next();
+      }else{
+  
+          res.send({
+              message:'data inserted',
+              username:username
+          });
+      }
+    
+  
+   
+         /* res.send({
+              message:'data inserted'
+          });
+  
+          res.send({message:'data not inserted'});*/
+  
+  
+  });
+  
+  const render = res.render;
+      const send = res.send;
+      res.render = function renderWrapper(...args) {
+          Error.captureStackTrace(this);
+          return render.apply(this, args);
+  
+      };
+  
+      res.send = function sendWrapper(...args) {
+          try {
+              send.apply(this, args);
+          } catch (err) {
+              console.error(`Error in res.send | ${err.code} | ${err.message} | ${res.stack}`);
+          }
+      };
+      //next();
 
 });
