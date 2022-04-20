@@ -32,6 +32,7 @@ const insertRecord=  require('./routes/insertRecord');
 const retrieve_officer=require('./routes/retrieve_officer');
 const retrieve_all_form=require('./routes/retrieve_all_form');
 const delete_image=require('./routes/delete_image');
+const password_reset=require('./routes/password_reset');
 
 
 //instantiating 
@@ -76,6 +77,7 @@ app.use('/insertRecord',insertRecord);
 app.use('/retrieve_officer',retrieve_officer);
 app.use('/retrieve_all_form',retrieve_all_form);
 app.use('/delete_image', delete_image);
+app.use('/password_reset', password_reset);
 
 //server
 app.listen(3000,()=>{console.log('server running')})
