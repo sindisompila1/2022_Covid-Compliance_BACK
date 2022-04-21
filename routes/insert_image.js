@@ -1,4 +1,3 @@
-
 const express =require('express');
 const bodyparser=require('body-parser');
 const cors = require('cors');
@@ -7,34 +6,31 @@ const router = express.Router();
 const app=express();
 module.exports = router;
 
-const multer = require('multer');
-const path =require('path');
-
 app.use(cors());
 app.use(bodyparser.json());
-const database=require('./database');
 
-//image ///////////////////////////////////////////////////////////////////////////////////////////////
+const database=require('./database');
+const multer = require('multer'); //npm install multer
+const path =require('path');  // npm install path
 
 var storage = multer.diskStorage({
     destination: (req, file, callBack) => {
-        callBack(null, './public/images/')     // './public/images/' directory name where save the file
+        callBack(null, './public/images/')     // './public/images/' directory name where save the file and create those to folders
     },
     filename: (req, file, callBack) => {
         callBack(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
     }
 })
- 
-var upload = multer({
+ var upload = multer({
     storage: storage
 });
  
-app.use('/pic_path',express.static('public/images'));
+
 router.post("/image",upload.single('pic_path'), (req, res) => {
 
-    let image_id=req.body.image_id;
-    let pictureName=req.body.pictureName;
-   //let pictureName="23 april";
+    //jslet image_id=req.body.image_id;
+    //let pictureName=req.body.pictureName;
+    let pictureName="20 april";
     let pic_path=req.imgsrc;
     
 
@@ -42,23 +38,12 @@ router.post("/image",upload.single('pic_path'), (req, res) => {
         console.log("No file upload");
     } else {
         console.log(req.file.filename)
-        
-       var imgsrc =`http://localhost:3000/select_image/view/`+req.file.filename
-        var insertData = `INSERT INTO image(image_id,pictureName,pic_path )VALUES('NULL','${pictureName}','${imgsrc}')`
+        var imgsrc = 'http://localhost:3000/image/' + req.file.filename
+        var insertData = `INSERT INTO image(image_id,pictureName,pic_path )VALUES('NULL','${pictureName}','${pic_path}')`
         database.query(insertData, [imgsrc], (err, result) => {
             if (err) throw err
     
             console.log("file uploaded")
         })
     }
-
-
-        res.json({
-            success:1,
-            profile_url:`http://localhost:3000/select_image/view/${req.file.filename}`
-
-        })
-
-       
-
 });
