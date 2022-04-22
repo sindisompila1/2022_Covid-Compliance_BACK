@@ -42,6 +42,8 @@ const select_image=require('./routes/select_image');
 const insert_video=require('./routes/insert_video');
 const select_notification=require('./routes/select_notification');
 const insert_image=require('./routes/insert_image');
+const add_notification=require('./routes/add_notification');
+const add_visitor=require('./routes/add_visitor');
 
 //instantiating 
 app.use(cors());
@@ -96,7 +98,8 @@ app.use('/select_all_image',select_all_image);
 app.use('/select_image',select_image);
 app.use('/insert_video',insert_video);
 app.use('/select_notification',select_notification);
-
+app.use('/add_notification',add_notification);
+app.use('/add_visitor',add_visitor);
 
 
 //server
