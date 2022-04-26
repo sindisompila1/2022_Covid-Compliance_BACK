@@ -44,6 +44,8 @@ const select_notification=require('./routes/select_notification');
 const insert_image=require('./routes/insert_image');
 const add_notification=require('./routes/add_notification');
 const add_visitor=require('./routes/add_visitor');
+const delete_notification=require('./routes/delete_notification');
+const login_visitor=require('./routes/login_visitor');
 
 //instantiating 
 app.use(cors());
@@ -92,7 +94,6 @@ app.use('/select_all_feedback',select_all_feedback);
 app.use('/view_single_feedback',view_single_feedback);
 app.use('/upload_image',upload_image);
 app.use('/insert_image',insert_image);
-
 app.use('/delete_image',delete_image);
 app.use('/select_all_image',select_all_image);
 app.use('/select_image',select_image);
@@ -100,7 +101,8 @@ app.use('/insert_video',insert_video);
 app.use('/select_notification',select_notification);
 app.use('/add_notification',add_notification);
 app.use('/add_visitor',add_visitor);
-
+app.use('/delete_notification',delete_notification);
+app.use('/login_visitor',login_visitor);
 
 //server
 app.listen(3000,()=>{console.log('server running')})
