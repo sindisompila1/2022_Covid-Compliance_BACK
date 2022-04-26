@@ -12,7 +12,7 @@ app.use(bodyparser.json());
 const database=require('./database');
 
 
-router.get('/visitor',(req,res)=>{
+router.post('/visitor',(req,res)=>{
 
     
    
@@ -22,14 +22,14 @@ router.get('/visitor',(req,res)=>{
 
 
     let User_id =req.body.User_id;
-    let password=req.body.password;
+    let Password=req.body.Password;
    
 
 //sending the variables to the database
 
 
 
-let qr=`select * from visitor where Visitor_id ='${User_id}' and Password='${password}' limit 1 `;
+let qr=`select * from visitor where Visitor_id ='${User_id}' and Password='${Password}' limit 1 `;
 
 database.query(qr,(err,result)=>{
 

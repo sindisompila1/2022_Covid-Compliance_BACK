@@ -46,6 +46,7 @@ const add_notification=require('./routes/add_notification');
 const add_visitor=require('./routes/add_visitor');
 const delete_notification=require('./routes/delete_notification');
 const login_visitor=require('./routes/login_visitor');
+const insert_healthform=require('./routes/insert_healthform');
 
 //instantiating 
 app.use(cors());
@@ -103,6 +104,7 @@ app.use('/add_notification',add_notification);
 app.use('/add_visitor',add_visitor);
 app.use('/delete_notification',delete_notification);
 app.use('/login_visitor',login_visitor);
+app.use('/insert_healthform',insert_healthform);
 
 //server
 app.listen(3000,()=>{console.log('server running')})
