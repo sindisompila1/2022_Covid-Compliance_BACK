@@ -77,7 +77,7 @@ app.use('/insertRecord',insertRecord);
 app.use('/retrieve_officer',retrieve_officer);
 app.use('/retrieve_all_form',retrieve_all_form);
 app.use('/delete_image', delete_image);
-app.use('/password_reset', password_reset);
+app.use('/password_reset',  password_reset);
 
 //server
 app.listen(3000,()=>{console.log('server running')})
