@@ -32,52 +32,105 @@ router.post('/user',(req,res)=>{
     let password=req.body.password;
     let firstNames=req.body.firstNames;
 
-//sending the variables to the database
-
-
-
-let qr=`insert into user(User_id,Camp_id,First_name,Last_name,Gender,Type,Cellphone_number,Email,Password) values('${userId}','${campId}','${firstNames}','${lastName}','${gender}','${type}','${cellphone}','${ email}','${password}')`;
-
+//check if email have registered before
+let qr = `select Email from user where Email = '${email}'`;
 database.query(qr,(err,result)=>{
 
-  
-    if(err){console.log(err);
-        console.log(result,'result')
-        res.send({message:'data not inserted'});
-      }else{
-  
-          res.send({
-              message:'data inserted',
-              username:username
-          });
-      }
     
+
+    if(err){console.log(err);}
+    
+    if(result.length>0)
+       {
+        res.send({
+            message:'Unsuccessful',
+            data:result
+           
+            
+        });
+       }
+       else 
+       {
+            res.send({
+             message:'Successful'
+        });
+
+
+         //start registering
+
+         let qr=`insert into user(User_id,Camp_id,First_name,Last_name,Gender,Type,Cellphone_number,Email,Password) values('${userId}','${campId}','${firstNames}','${lastName}','${gender}','${type}','${cellphone}','${ email}','${password}')`;
+
+         database.query(qr,(err,result)=>{
+
   
-   
-         /* res.send({
-              message:'data inserted'
+            if(err){console.log(err);
+                console.log(result,'result')
+                res.send({message:'Unsuccessful'});
+
+
+            
+
+              }else{
+          
+                  res.send({
+                      message:'Successful'
+                    
+                      
+
+                  });
+
+                
+              }
+            
+              const render = res.render;
+              const send = res.send;
+              res.render = function renderWrapper(...args) {
+                  Error.captureStackTrace(this);
+                  return render.apply(this, args);
+          
+              };
+          
+              res.send = function sendWrapper(...args) {
+                  try {
+                      send.apply(this, args);
+                  } catch (err) {
+                      console.error(`Error in res.send | ${err.code} | ${err.message} | ${res.stack}`);
+                  }
+              };
+              //next();
+
+
+           
+                 /* res.send({
+                      message:'data inserted'
+                  });
+          
+                  res.send({message:'data not inserted'});*/
+          
+          
           });
+
+      }
+});
+
+
+const render = res.render;
+    const send = res.send;
+    res.render = function renderWrapper(...args) {
+        Error.captureStackTrace(this);
+        return render.apply(this, args);
+
+    };
+
+    res.send = function sendWrapper(...args) {
+        try {
+            send.apply(this, args);
+        } catch (err) {
+            console.error(`Error in res.send | ${err.code} | ${err.message} | ${res.stack}`);
+        }
+    };
+   // next();
   
-          res.send({message:'data not inserted'});*/
-  
-  
-  });
-  
-  const render = res.render;
-      const send = res.send;
-      res.render = function renderWrapper(...args) {
-          Error.captureStackTrace(this);
-          return render.apply(this, args);
-  
-      };
-  
-      res.send = function sendWrapper(...args) {
-          try {
-              send.apply(this, args);
-          } catch (err) {
-              console.error(`Error in res.send | ${err.code} | ${err.message} | ${res.stack}`);
-          }
-      };
-      //next();
+ 
 
 });

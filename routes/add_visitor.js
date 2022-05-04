@@ -28,8 +28,7 @@ router.post('/visitor',(req,res)=>{
     let Email=req.body.Email;
     let Password= req.body.Password;
 
-//Sending the variables to the database
-//Password encryption 
+
 
 
 let qr=`insert into visitor(Visitor_id,Campus_id,First_name,Last_name,Gender,Cellphone_number,Email,Password) values('${Visitor_id}','${Campus_id}','${First_name}','${Last_name}','${Gender}','${Cellphone_number}','${Email}','${Password}')`;

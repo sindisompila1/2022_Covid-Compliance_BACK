@@ -58,7 +58,7 @@ database.query(qr,(err,result)=>{
     }else{
         res.send({
             message:'data inserted'
-        });
+        });               
     }
    //console.log(result,'result')
 

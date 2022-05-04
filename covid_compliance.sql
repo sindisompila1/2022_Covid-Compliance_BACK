@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2022 at 11:01 AM
+-- Generation Time: Apr 28, 2022 at 10:01 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -79,6 +79,44 @@ CREATE TABLE `feedback` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `healthform`
+--
+
+CREATE TABLE `healthform` (
+  `Form_id` int(13) NOT NULL,
+  `User_id` varchar(13) NOT NULL,
+  `Vaccination_status` varchar(25) NOT NULL,
+  `Covid19` varchar(25) NOT NULL,
+  `Recent_cough` varchar(25) NOT NULL,
+  `Difficulty_breath` varchar(4) NOT NULL,
+  `Weight_lose` varchar(4) NOT NULL,
+  `Headache` varchar(4) NOT NULL,
+  `Infected_person` varchar(4) NOT NULL,
+  `Form_check` varchar(25) NOT NULL,
+  `Status` varchar(13) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `healthform`
+--
+
+INSERT INTO `healthform` (`Form_id`, `User_id`, `Vaccination_status`, `Covid19`, `Recent_cough`, `Difficulty_breath`, `Weight_lose`, `Headache`, `Infected_person`, `Form_check`, `Status`) VALUES
+(1, '111', 'No', 'No', 'No', 'No', 'unde', 'No', 'No', 'undefined', 'undefined'),
+(2, '111', 'No', 'No', 'No', 'No', 'unde', 'No', 'No', 'undefined', 'undefined'),
+(3, '111', 'No', 'No', 'No', 'No', 'unde', 'No', 'No', 'undefined', 'undefined'),
+(4, 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No'),
+(5, '111', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Yes', 'WARNING'),
+(6, '111', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Yes', 'WARNING'),
+(7, '111', '', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'No'),
+(8, '123654', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Yes', 'WARNING'),
+(9, '123654', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Yes', 'WARNING'),
+(10, '123654', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Yes', 'WARNING'),
+(11, '123654', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Yes', 'WARNING'),
+(12, '4', 'No', 'No', 'No', 'No', 'No', 'No', 'No', 'Yes', 'WARNING');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `image`
 --
 
@@ -95,7 +133,23 @@ CREATE TABLE `image` (
 INSERT INTO `image` (`image_id`, `pictureName`, `pic_path`) VALUES
 (23, 'anto', 'http://3000/image/pic_path-1649398910454.jfif'),
 (25, 'love', 'http://3000/image/pic_path-1649400075321.jfif'),
-(26, 'nunu', 'http://3000/image/pic_path-1649664650752.jpg');
+(26, 'nunu', 'http://3000/image/pic_path-1649664650752.jpg'),
+(27, 'test1', 'http://3000/image/pic_path-1649670028983.mp4'),
+(28, 'try1', 'http://localhost:3000/public/images/pic_path-1649679420998.png'),
+(29, 'zery', 'http://localhost:3000/pic_path/pic_path-1649758345005.png'),
+(30, 'nunu', 'http://localhost:3000/pic_path/pic_path-1649759377253.png'),
+(31, 'INDEX', 'http://localhost:3000/pic_path/pic_path-1649834766481.png'),
+(32, 'last', 'http://localhost:3000/pic_path/pic_path-1649835729786.png'),
+(33, '20 april', 'undefined'),
+(34, '22 april', 'http://localhost:3000/pic_path/pic_path-1650442945170.png'),
+(35, '22 april', 'http://localhost:3000/pic_path/pic_path-1650443149928.png'),
+(36, 'laster 212', 'http://localhost:3000/pic_path/pic_path-1650444136077.png'),
+(37, '26 april in advance', 'http://localhost:3000/pic_path/pic_path-1650446133172.png'),
+(38, '27 april humn rights day', 'http://localhost:3000/pic_path/pic_path-1650446490319.png'),
+(39, '80 may', 'http://localhost:3000/pic_path/pic_path-1650534932381.png'),
+(40, 'Mthethwa', 'http://localhost:3000/pic_path/pic_path-1650545333758.png'),
+(41, 'try 67', 'http://localhost:3000/view/pic_path-1650545678492.png'),
+(42, 'try 69', 'http://localhost:3000/select_image/view/pic_path-1650546098238.png');
 
 -- --------------------------------------------------------
 
@@ -108,6 +162,14 @@ CREATE TABLE `notification` (
   `admin_id` int(25) NOT NULL,
   `message` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `notification`
+--
+
+INSERT INTO `notification` (`notification_id`, `admin_id`, `message`) VALUES
+(1, 111, 'hi everybody'),
+(2, 111, 'good day everybody');
 
 -- --------------------------------------------------------
 
@@ -201,6 +263,14 @@ CREATE TABLE `videos` (
   `video_path` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `videos`
+--
+
+INSERT INTO `videos` (`video_id`, `video_name`, `video_path`) VALUES
+(3, 'test2', 'http://3000/videos/vid_path-1649670828283.mp4'),
+(4, 'test3', 'http://3000/videos/vid_path-1649671032261.mp4');
+
 -- --------------------------------------------------------
 
 --
@@ -218,6 +288,13 @@ CREATE TABLE `visitor` (
   `Password` varchar(25) NOT NULL,
   `vaccination_card` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `visitor`
+--
+
+INSERT INTO `visitor` (`visitor_id`, `Camp_id`, `First_name`, `Last_name`, `Gender`, `Cellphone_number`, `Email`, `Password`, `vaccination_card`) VALUES
+(111111111, 1, 'squish', 'chauke', 'm', '0123662559', 'tb@gmail.com', '12345', '');
 
 -- --------------------------------------------------------
 
@@ -260,6 +337,12 @@ ALTER TABLE `feedback`
   ADD PRIMARY KEY (`Feed_id`),
   ADD KEY `FK_feedback_user_sends` (`User_id`),
   ADD KEY `FK_feedback_camp_reiceves` (`Camp_id`);
+
+--
+-- Indexes for table `healthform`
+--
+ALTER TABLE `healthform`
+  ADD PRIMARY KEY (`Form_id`);
 
 --
 -- Indexes for table `image`
@@ -318,16 +401,22 @@ ALTER TABLE `visitor_record`
 --
 
 --
+-- AUTO_INCREMENT for table `healthform`
+--
+ALTER TABLE `healthform`
+  MODIFY `Form_id` int(13) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT for table `image`
 --
 ALTER TABLE `image`
-  MODIFY `image_id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `image_id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `notification_id` int(25) NOT NULL AUTO_INCREMENT;
+  MODIFY `notification_id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `record`
@@ -345,7 +434,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `videos`
 --
 ALTER TABLE `videos`
-  MODIFY `video_id` int(25) NOT NULL AUTO_INCREMENT;
+  MODIFY `video_id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `visitor_record`

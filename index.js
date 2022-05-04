@@ -47,7 +47,7 @@ const add_visitor=require('./routes/add_visitor');
 const delete_notification=require('./routes/delete_notification');
 const login_visitor=require('./routes/login_visitor');
 const insert_healthform=require('./routes/insert_healthform');
-
+const reset_password=require('./routes/reset_password');
 //instantiating 
 app.use(cors());
 app.use(bodyparser.json());
@@ -105,6 +105,7 @@ app.use('/add_visitor',add_visitor);
 app.use('/delete_notification',delete_notification);
 app.use('/login_visitor',login_visitor);
 app.use('/insert_healthform',insert_healthform);
+//app.use('/reset_password',reset_password);
 
 //server
 app.listen(3000,()=>{console.log('server running')})
