@@ -130,7 +130,33 @@ const render = res.render;
         }
     };
    // next();
-  
+  // email
+
+  var nodemailer = require('nodemailer');
+
+  var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+      user: 'thatothato1818@gmail.com',
+      pass: '13Moleya.r'
+  }
+  });
+
+  var mailOptions = {
+  from: 'thatothato1818@gmail.com',
+  to:JSON.stringify(email),
+  subject:'covid complaince  ' ,
+  text:firstNames+' '+lastName+' WELCOME TO COVID COMPLAINCE '
+
+  };
+
+  transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
  
 
 });
