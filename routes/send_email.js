@@ -35,7 +35,7 @@ router.post('/send',(req,res)=>{
   });
 
   var mailOptions = {
-  from: 'thatothato1818@gmail.com',
+  from:'thatothato1818@gmail.com',
   to:JSON.stringify(email),
   subject:'covid compliance  ' ,
   text:message+  ' from '+fullname+' with ID'+User_id+' '

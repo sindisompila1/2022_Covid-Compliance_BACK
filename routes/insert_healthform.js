@@ -31,6 +31,13 @@ router.post('/user',(req,res)=>{
   let infectedPerson=req.body.infectedPerson;
   let status;
   let Form_check;
+  
+  //Hamilton
+  
+   let date=new Date();
+   formateDate=date.toDateString();
+  
+  //Hamilton
 //sending the variables to the database
 
 if(vstatus==="No" && covid19==="No" && recentCough==="No" && difficultyBreathing==="No" && weight_loss==="No" && heavyHeadache==="No" && infectedPerson==="No"){
@@ -48,8 +55,8 @@ if(vstatus==="No" && covid19==="Yes" && recentCough==="No" && difficultyBreathin
 
  
 
-let qr=`insert into healthForm(User_id,Vaccination_status,Covid19,Recent_cough,Difficulty_breath,Weight_lose,Headache,Infected_person,Form_check,Status) values('${User_id}','${vstatus}','${covid19}','${recentCough}','${difficultyBreathing}','${weight_loss}','${heavyHeadache}','${infectedPerson}','${Form_check}','${status}')`;
-
+//let qr=`insert into healthForm(User_id,Vaccination_status,Covid19,Recent_cough,Difficulty_breath,Weight_lose,Headache,Infected_person,Form_check,Status) values('${User_id}','${vstatus}','${covid19}','${recentCough}','${difficultyBreathing}','${weight_loss}','${heavyHeadache}','${infectedPerson}','${Form_check}','${status}')`;
+let qr=`insert into record(User_id,Form_check,Status,Date) values('${User_id}','${Form_check}','${status}','${formateDate}')`
 database.query(qr,(err,result)=>{
 
     if(err){console.log(err);
@@ -58,10 +65,11 @@ database.query(qr,(err,result)=>{
     }else{
         res.send({
             message:'data inserted'
+			
         });               
     }
    //console.log(result,'result')
-
+console.log(formateDate)
        
         
   
@@ -90,5 +98,18 @@ database.query(qr,(err,result)=>{
 
 
     //next();
+	
+/* 	let qr_record=`insert into record(User_id,Form_check,Status) values('${User_id}','${Form_check}','${status}')`;
+
+database.query(qr_record,(err,result)=>{
+
+    if(err){console.log(err);
+    
+        res.send({message:'data Not inserted'});
+    }else{
+        res.send({
+            message:'data inserted'
+        });               
+    } */
 
 });
