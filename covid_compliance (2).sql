@@ -281,6 +281,8 @@ ALTER TABLE `feedback`
   ADD CONSTRAINT `FK_feedback_camp_reiceves` FOREIGN KEY (`Camp_id`) REFERENCES `campus` (`Camp_id`),
   ADD CONSTRAINT `FK_feedback_user_sends` FOREIGN KEY (`User_id`) REFERENCES `user` (`User_id`);
 
+ALTER TABLE `user`
+  ADD resetToken VARCHAR(300);
 --
 -- Constraints for table `officer`
 --

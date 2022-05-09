@@ -1,18 +1,9 @@
-
 //declaring variables
-
-const express =require('express');
-const bodyparser=require('body-parser');
+const express = require('express');
 const cors = require('cors');
-const app=express();
-const mysql=require('mysql2');
+const bodyparser = require('body-parser');
 
-
-
-
-
-
-const router = express.Router();
+// files
 const viewall = require('./routes/viewall');
 const delete_user =  require('./routes/delete');
 const add=require('./routes/add_user');
@@ -34,28 +25,11 @@ const retrieve_all_form=require('./routes/retrieve_all_form');
 const delete_image=require('./routes/delete_image');
 const password_reset=require('./routes/password_reset');
 
+const app=express();
 
 //instantiating 
 app.use(cors());
 app.use(bodyparser.json());
-
-//creating database connection
-
-const db=mysql.createConnection({host:'localhost',user:'root',password:'',database:'covid_compliance',port:'3306'});
-
-//check the database  connection
-
-db.connect(err=>{
-    if(err) {
-        console.log(err,'dberr');}
-        else{
-            console.log('database connected.....');
-        }
-    
-
-});
-
-
 
 
 app.use('/viewall',viewall);
