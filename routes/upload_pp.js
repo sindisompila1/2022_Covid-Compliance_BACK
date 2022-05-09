@@ -15,7 +15,7 @@ const path =require('path');  // npm install path
 
 var storage = multer.diskStorage({
     destination: (req, file, callBack) => {
-        callBack(null, './public/vc/')     // './public/images/' directory name where save the file and create those to folders
+        callBack(null, './public/pp/')     // './public/images/' directory name where save the file and create those to folders
     },
     filename: (req, file, callBack) => {
         callBack(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
@@ -26,7 +26,7 @@ var storage = multer.diskStorage({
 });
  
 
-router.put("/insert_vaccinationCard",upload.single('pic_path'), (req, res) => {
+router.put("/upload_pp",upload.single('pic_path'), (req, res) => {
 
     //jslet image_id=req.body.image_id;
     //let pictureName=req.body.pictureName;
@@ -38,9 +38,9 @@ router.put("/insert_vaccinationCard",upload.single('pic_path'), (req, res) => {
         console.log("No file upload");
     } else {
         console.log(req.file.filename)
-        var imgsrc = 'http://localhost:3000/insert_vaccinationCard' + req.file.filename
+        var imgsrc = 'http://localhost:3000/upload_pp' + req.file.filename
         console.log(imgsrc);
-        var insertData = `UPDATE user SET vaccination_card ='${imgsrc}' WHERE user_id='${User_id}'`
+        var insertData = `UPDATE user SET profile_pic ='${imgsrc}' WHERE user_id='${User_id}'`
         database.query(insertData, [imgsrc], (err, result) => {
             if (err) throw err
     

@@ -51,6 +51,7 @@ const reset_password=require('./routes/reset_password');
 const send_email=require('./routes/send_email');
 const insert_vaccinationCard=require('./routes/insert_vaccination_card');
 const select_news_feed=require('./routes/select_news_feed');
+const upload_pp=require('./routes/upload_pp');
 //instantiating 
 app.use(cors());
 app.use(bodyparser.json());
@@ -108,10 +109,11 @@ app.use('/add_visitor',add_visitor);
 app.use('/delete_notification',delete_notification);
 app.use('/login_visitor',login_visitor);
 app.use('/insert_healthform',insert_healthform);
-//app.use('/reset_password',reset_password);
+app.use('/reset_password',reset_password);
 app.use('/send_email',send_email);
 app.use('/insert_vaccinationCard',insert_vaccinationCard);
 app.use('/select_news_feed',select_news_feed);
+app.use('/upload_pp',upload_pp);
 
 //server
 app.listen(3000,()=>{console.log('server running')})
