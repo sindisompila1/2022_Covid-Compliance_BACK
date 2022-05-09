@@ -5,8 +5,7 @@ const database=require('./database');
 
 const router = express.Router();
 
-router.post('/forgot', (req, res) =>{
-    console.log(req.body)
+router.post('/forgot', (req, res) =>{  // The user requests password reset
     let Email = req.body.Email ;
     
     // Serches for user
@@ -20,27 +19,17 @@ router.post('/forgot', (req, res) =>{
         
         if(result.length >0)
         {
-            console.log("User found", result);
-            res.send({mesage: "User found", data: result});
-
-            // Send email
-
             let transporter = nodemailer.createTransport({
-            service:'gmail',
-            auth:{
-                user: 'tshwanevirtualhackathon@gmail.com',
-                pass: 'Tvh@0152'
-            },
-            secureConnection: 'false',
-            tls: {
-                ciphers: 'SSLv3',
-                rejectUnauthorized: false
-            }
+                service: 'gmail',
+                auth: {
+                    user: 'thatothato1818@gmail.com',
+                    pass: '13Moleya.r'
+                }
             }); 
 
-            const token = jwt.sign({Email: result, iat: Date.now(), exp: Date.now() + 3000},'ScreteKey');
-                                 
-            message ={
+            const token = jwt.sign({Email: result[0].Email, iat: Date.now(), exp: Date.now() + 3000},'ScreteKey');
+            console.log("The data inside the token", {Email: result[0].Email, iat: Date.now(), exp: Date.now() + 3000});
+            message = {
                 from:'tshwanevirtualhackathon@gmail.com',
                 to: Email,
                 subject:'No reply :TVH Application',
@@ -48,15 +37,15 @@ router.post('/forgot', (req, res) =>{
             }
 
             //  Save the token to the user table
-            sql = `UPDATE user  SET resetToken = '${token}' WHERE Email == ${email}`;
-         
+            sql = `UPDATE user  SET resetToken = '${token}' WHERE Email = '${Email}' `;
+            
             database.query(sql, (err, result) => {
                 if (err) {
                     res.send("There was an error");
                 }
-                if(result.length > 0)
                 // Then send the token to the user's email
-                transporter.sendMail(message,function(err, info) {
+                console.log("TOKEN: ", token);
+                transporter.sendMail(message, function(err, info) {
                     if (err) {
                         console.log(err)
                     } else {
@@ -75,14 +64,14 @@ router.post('/forgot', (req, res) =>{
 
 router.get("/reset/:token", (req, res) => {
     // Verifies the token
-    const token = req.params.token.split(" ")[1];
-    jwt.verify(token, 'ScreteKey', (err, decoded) => {
+    jwt.verify(req.params.token, 'ScreteKey', (err, decoded) => {
         if (err) {
-            res.send('Your password reset token is ivalid!');
+            res.send('Your password reset token is invalid!');
             // Redirect to forgot password
         } else {
+            console.log("Decoded Token: ", decoded);
             let sql = `SELECT Email, resetToken FROM user WHERE Email = '${decoded.Email}' `;
-            db.query(sql, (err, result) => {
+            database.query(sql, (err, result) => {
                 if (err) {
                     console.log(err);
                     res.send("There was an error");
@@ -90,59 +79,38 @@ router.get("/reset/:token", (req, res) => {
                 }
                 if(result.length > 0) {
                     // Check if the token that is recieved is the one that was sent
-                    if (result.resetToken == req.params.token) {
+                    if (result[0].resetToken == req.params.token) {
                         res.send("You are ready to reset your email");
                         // Redirect to password reset form
                     } else {
                         res.send('Your password reset token is ivalid or has expired!');
                     }
                 }
-
             });
-
         }
     });
 });
 
 router.put("/reset/:token", (req, res) => {
+    // Only one password is sent to the backend assuming
+    const Password = req.body.Password;
 
-    const token = req.params.token.split(" ")[1];
-    jwt.verify(token, 'ScreteKey', (err, decoded) => {
+    jwt.verify(req.params.token, 'ScreteKey', (err, decoded) => {
         if (err) {
             res.send('Your password reset token is ivalid!');
         } else {
-            let sql = `SELECT Email FROM user WHERE Email == ${decoded.Email}`;
+            let sql = `UPDATE user SET password = '${Password}' WHERE Email = '${decoded.Email}'`;
 
-            database.query(sql, (err,result) =>{
+            database.query(sql, (err, result) => {
                 if (err) {
                     console.log(err);
-                    res.send({error: err});
+                    res.send("There was an error");
                 }
-                
-                if(result.length > 0) {
-                    console.log("User found");
-                    sql = `UPDATE user  SET password = ${password} WHERE Email == ${email}`;
-        
-                    database.query(sql, (err, result) => {
-                        if (err) {
-                            console.log(err);
-                            res.send("There was an error");
-                        }
-                        if(result.length > 0)
-                            res.send("Your password was successfully updated");
-                    });
-                } else {
-                    console.log("User not found ");
-                    res.send("User not found ");
-                }
+                console.log(sql)
+                res.send("Your password was successfully updated");
             });
-
         }
     });
-
-
-    let email, password = req.body.email ;
-    
 });
 
 module.exports = router;
