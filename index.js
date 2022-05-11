@@ -55,7 +55,7 @@ const select_news_feed=require('./routes/select_news_feed');
 const upload_pp=require('./routes/upload_pp');
 const insert_news=require('./routes/insert_news');
 const flue=require('./routes/flue');
-const retrieve_all_visitors=require('./routes/retrieve_all_vistors');
+const retrieve_all_vistors=require('./routes/retrieve_all_vistors');
 const states=require('./routes/states');
 //instantiating 
 app.use(cors());
@@ -122,7 +122,7 @@ app.use('/select_news_feed',select_news_feed);
 app.use('/upload_pp',upload_pp);
 app.use('/insert_news',insert_news);
 app.use('/flue',flue);
-app.use('/retrieve_all_visitors',retrieve_all_visitors);
+app.use('/retrieve_all_vistors',retrieve_all_vistors);
 app.use('/states',states);
 
 //server
