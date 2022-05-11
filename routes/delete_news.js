@@ -1,14 +1,21 @@
 const express =require('express');
+const bodyparser=require('body-parser');
+const cors = require('cors');
+const mysql=require('mysql2');
 const router = express.Router();
 const app=express();
 module.exports = router;
 
+app.use(cors());
+app.use(bodyparser.json());
+
 const database=require('./database');
 
 
+router.post('/delete_news_feed',(req,res)=>{
 
 router.delete('/delete_news_feed',(req,res)=>{
-    
+
      let sql = 'DELETE  from feedback';
 
     database.query(sql,(err,result)=>{
@@ -21,12 +28,41 @@ router.delete('/delete_news_feed',(req,res)=>{
              message: 'all news Feed Deleted..!!',
              data:result
              })
-             
+
          }
      });
 
-  
-    
 
-    
+    console.log(req.body,'createdata');
+
+    //instatiating user variables
+
+
+    let news_id =req.body.news_id;
+
+
+
+//sending the variables to the database
+
+
+
+let qr=`delete  from newsfeed where News_id ='${news_id}'limit 1 `;
+
+
+database.query(sql,(err,result)=>{
+    if (err){
+       console.log(err,'sorry no data was deleted');
+
+    }
+    if(result.length>0){
+        res.send({
+        message: 'all news Feed Deleted..!!',
+        data:result
+        })
+
+    }
+
+
+});
+})
 });
