@@ -12,35 +12,17 @@ app.use(bodyparser.json());
 const database=require('./database');
 
 
-router.post('/delete_news_feed',(req,res)=>{
+router.post('/delete_news_feed/:news_id',(req,res)=>{
 
-router.delete('/delete_news_feed',(req,res)=>{
-
-     let sql = 'DELETE  from feedback';
-
-    database.query(sql,(err,result)=>{
-         if (err){
-            console.log(err,'sorry no data was deleted');
-
-         }
-         if(result.length>0){
-             res.send({
-             message: 'all news Feed Deleted..!!',
-             data:result
-             })
-
-         }
-     });
-
-
+    
     console.log(req.body,'createdata');
 
     //instatiating user variables
 
 
     let news_id =req.body.news_id;
-
-
+    
+   
 
 //sending the variables to the database
 
@@ -59,10 +41,9 @@ database.query(sql,(err,result)=>{
         message: 'all news Feed Deleted..!!',
         data:result
         })
-
+        
     }
-
+    
 
 });
-})
 });
