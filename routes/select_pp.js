@@ -6,7 +6,25 @@ module.exports = router;
 const database=require('./database');
 
 
-router.get('/view/:pic_name',(req,res)=>{
-  let pic_name = req.params.pic_name;
-  res.download('./public/pp/'+pic_name);
+router.get('/view/:user_id',(req,res)=>{
+  let user_id = req.params.user_id;
+  let sql=`select profile_pic from user where User_id='${user_id}' `;
+database.query(sql,(err,result)=>{
+  if(err) {console.log(err)}
+  //console.log(result[0].profile_pic);
+  
+ 
+
+
+  if(result.length>0)
+  {
+
+    res.download('./public/pp/'+result[0].profile_pic);
+   
+   
+  }
+  
+})
+
+ 
 })

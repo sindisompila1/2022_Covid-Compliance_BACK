@@ -38,7 +38,7 @@ router.put("/upload_pp",upload.single('pic_path'), (req, res) => {
         console.log("No file upload");
     } else {
         console.log(req.file.filename)
-        var imgsrc = 'http://localhost:3000/upload_pp' + req.file.filename
+        var imgsrc = req.file.filename
         console.log(imgsrc);
         var insertData = `UPDATE user SET profile_pic ='${imgsrc}' WHERE user_id='${User_id}'`
         database.query(insertData, [imgsrc], (err, result) => {
