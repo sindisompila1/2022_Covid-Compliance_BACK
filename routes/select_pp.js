@@ -6,7 +6,7 @@ module.exports = router;
 const database=require('./database');
 
 
-router.get('/view/:pic_id',(req,res)=>{
-  let gID = req.params.pic_id;
-  res.download('./public/images/'+gID);
+router.get('/view/:pic_name',(req,res)=>{
+  let pic_name = req.params.pic_name;
+  res.download('./public/pp/'+pic_name);
 })

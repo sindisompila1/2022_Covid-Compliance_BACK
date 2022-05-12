@@ -57,6 +57,7 @@ const insert_news=require('./routes/insert_news');
 const flue=require('./routes/flue');
 const retrieve_all_vistors=require('./routes/retrieve_all_vistors');
 const states=require('./routes/states');
+const select_pp=require('./routes/select_pp');
 //instantiating 
 app.use(cors());
 app.use(bodyparser.json());
@@ -124,6 +125,7 @@ app.use('/insert_news',insert_news);
 app.use('/flue',flue);
 app.use('/retrieve_all_vistors',retrieve_all_vistors);
 app.use('/states',states);
+app.use('/select_pp',select_pp);
 
 //server
 app.listen(3000,()=>{console.log('server running')})
