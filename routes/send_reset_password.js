@@ -42,7 +42,7 @@ database.query(sql,(err,result)=>{
       to:JSON.stringify(email),
       subject:'covid compliance password reset  ' ,
       text:'click the following link to reset your password  '
-      + 'http://localhost:3000/reset_password/reset_password/'+email
+      + 'http://localhost:4200/reset_password/reset_password/'+email
     
       };
     
