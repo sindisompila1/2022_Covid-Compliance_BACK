@@ -12,7 +12,7 @@ app.use(bodyparser.json());
 const database=require('./database');
 
 
-router.post('/delete_news_feed/:news_id',(req,res)=>{
+router.delete('/news_id',(req,res)=>{
 
     
     console.log(req.body,'createdata');
@@ -28,7 +28,7 @@ router.post('/delete_news_feed/:news_id',(req,res)=>{
 
 
 
-let qr=`delete  from newsfeed where News_id ='${news_id}'limit 1 `;
+let sql=`delete  from newsfeed where News_id ='${news_id}'limit 1`;
 
 
 database.query(sql,(err,result)=>{

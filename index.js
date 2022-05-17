@@ -60,6 +60,7 @@ const retrieve_all_vistors=require('./routes/retrieve_all_vistors');
 const states=require('./routes/states');
 const select_pp=require('./routes/select_pp');
 const select_pp_officer=require('./routes/select_pp_officer');
+const delete_news=require('./routes/delete_news');
 //instantiating 
 app.use(cors());
 app.use(bodyparser.json());
@@ -130,6 +131,7 @@ app.use('/retrieve_all_vistors',retrieve_all_vistors);
 app.use('/states',states);
 app.use('/select_pp',select_pp);
 app.use('/select_pp_officer',select_pp_officer);
+app.use('/delete_news',delete_news);
 
 
 
