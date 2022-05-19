@@ -43,11 +43,13 @@ router.post('/user',(req,res)=>{
 
 
 
-let qC = `select * from record where User_id ='${User_id}'and Date='${date.toDateString()}'  `;
+let qC = `select * from record where User_id ='${User_id}'and Date='${ formateDate}'  `;
     
     database.query(qC,(err,result)=>{
     
     if(err){console.log(err);}
+    console.log('date',formateDate);
+    console.log('user',User_id);
     
     if(result.length>0)
        {
