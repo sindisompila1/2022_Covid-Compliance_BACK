@@ -12,15 +12,15 @@ app.use(bodyparser.json());
 const database=require('./database');
 
 
-router.delete('/news_id',(req,res)=>{
+router.delete('/delete_news_feed/:news_id',(req,res)=>{
 
     
-    console.log(req.body,'createdata');
+    //console.log(req.body,'createdata');
 
     //instatiating user variables
 
 
-    let news_id =req.body.news_id;
+    let news_id =req.params.news_id;
     
    
 
