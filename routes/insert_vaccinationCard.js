@@ -33,15 +33,15 @@ router.put("/insert_vaccinationCard",upload.single('pic_path'), (req, res) => {
     //let pictureName=req.body.pictureName;
     let pictureName="haloo";
     let pic_path=req.imgsrc;
-    let User_id=req.body.User_id;
+    let user_id='746810';
 
     if (!req.file) {
         console.log("No file upload");
     } else {
         console.log(req.file.filename)
-        var imgsrc = req.file.filename
+        var imgsrc = 'http://localhost:3000/insert_vaccinationCard' + req.file.filename
         console.log(imgsrc);
-        var insertData = `UPDATE user SET vaccination_card  ='${imgsrc}' WHERE user_id='${User_id}'`
+        var insertData = `UPDATE user SET vaccinationCard ='${imgsrc}' WHERE user_id='${user_id}'`
         database.query(insertData, [imgsrc], (err, result) => {
             if (err) throw err
     
