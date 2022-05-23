@@ -10,31 +10,25 @@ const database=require('./database');
 router.get('/record/:User_id',(req,res)=>{
     let gID = req.params.User_id;
     
-    let qr = `select Form_check from record where User_id = '${gID}'`;
+    let qr = `select Form_check,Tempareture from record where User_id = '${gID}'`;
     
     database.query(qr,(err,result)=>{
     
-    if(err){console.log(err);}
-    
-    if(result.length>0)
-       {
-        res.send({
-            message:'Successful',
-            data:result
-            
-        });
-       }
-       else 
-       {
+      if(err){console.log(err);
+        console.log(result,'result')
+        res.send({message:'Unsuccessful'});
+        } 
+        else{
             res.send({
-             message:'Unsuccessful'
-        })
-      }
+                message:'Successful',
+                data:result
+            });
     
-    });
+        }
+            
+    }); 
        
-})
+       
 
-
-
+  });
 
